@@ -23,7 +23,7 @@ function Statistics() {
                 </div>
                 <div className="line"></div>
 
-                <div className="feature--card">
+                <div className="feature--card two">
                     <div className="stat--logo">
                         <img src="../images/icon-detailed-records.svg" alt="" />
                     </div> 
@@ -35,7 +35,7 @@ function Statistics() {
 
                 <div className="line"></div>
 
-                <div className="feature--card">
+                <div className="feature--card three">
                     <div className="stat--logo">
                         <img src="../images/icon-fully-customizable.svg" alt="" />
                     </div> 
