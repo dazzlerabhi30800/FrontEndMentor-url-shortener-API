@@ -1,23 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
 import style from './Sass/style.scss';
+import ShortLinkCard from './ShortLinkCard';
 
-function ShortenLink() {
+
+function ShortenLink({ setShortLinks, shortLinks }) {
+    const [inputText, setInputText] = useState('')
+    const [showError, setShowError] = useState(true);
+
+    const handleChange = (e) => {
+        setInputText(e.target.value);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (inputText != '') {
+            setShowError(prevState => prevState = true)
+            setShortLinks([
+                ...shortLinks, { inputUrl: inputText, copied :false, id: nanoid(), shortedUrl: 'best we are the best'},
+            ])
+            setInputText('');
+        }
+        else {
+            setShowError(prevState => prevState = false);
+        }
+    }
+
+    const shortenCardComp = shortLinks.map((shortLink, index) => {
+        return(
+             <ShortLinkCard
+                item={shortLink}
+                key={index}
+                setShortLinks={setShortLinks}
+                shortLink={shortLink}
+                shortLinks={shortLinks}
+              />
+        )
+    })
+
+
     return (
         <div className='shorten--link--wrapper'>
-            <div className="shorten--link--container">
+            <form className="shorten--link--container">
                 <div className="input--wrapper">
-                    <input type="text" placeholder='Shorten a link here' />
-                    <span className="error">Please add a link</span>
+                    <input value={inputText} onChange={handleChange} type="text" className={showError ? 'short-input' : 'short-input show'} placeholder='Shorten a link here' />
+                    <span className={showError ? 'error' : 'error show'}>Please add a link</span>
                 </div>
-                <button type="submit" className="shorten--btn">Shorten It!</button>
-            </div>
+                <button onClick={handleSubmit} type="submit" className="shorten--btn">Shorten It!</button>
+            </form>
 
-            <div className="shorten--link--list--wrapper">
-                <div className="input--link">Input Link</div>
-                <div className="shorted--link--wrapper">
-                    <a href="#" className="short--link">Shorted Link</a>
-                    <button className="copy--link">Copy</button>
-                </div>
+            <div className="shorten--link--list--wrapper"> 
+               {shortenCardComp}
             </div>
         </div>
     )

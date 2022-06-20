@@ -215,6 +215,11 @@ $Very-Dark-Violet: hsl(260, 8%, 14%);
                 transition: border .3s ease;
 
                 &:focus {
+                    color: black;
+                    border: 2px solid $Cyan;
+                }
+
+                &.show {
                     color: $Red;
                     border: 2px solid $Red;
                 }
@@ -258,13 +263,19 @@ $Very-Dark-Violet: hsl(260, 8%, 14%);
         display: flex;
         flex-direction: column;
         margin: 10px auto;
-        background: white;
         padding: 1rem 0;
         gap: 1rem;
         width: 350px;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.103);
 
+        .shorted--link--card {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            background: white;
+            padding: 1rem .5rem;
+            border-radius: 10px;
+            box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.123);
+        }
 
         .input--link {
             color: black;
@@ -295,6 +306,13 @@ $Very-Dark-Violet: hsl(260, 8%, 14%);
                 border-radius: 5px;
                 cursor: pointer;
                 transition: all .5s linear;
+
+                &.copy {
+                    background: $Very-Dark-Violet;
+                }
+                &.copy:hover {
+                    background: hsl(260, 8%, 34%);
+                }
 
                 &:hover {
                     background: hsl(180, 66%, 69%)
@@ -711,8 +729,8 @@ footer {
                     width: 500px;
 
                     &:focus {
-                        color: $Red;
-                        border: 2px solid $Red;
+                        color: black;
+                        border: 2px solid black;
                     }
                 }
 
@@ -752,16 +770,26 @@ footer {
 
         .shorten--link--list--wrapper {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             margin: 10px auto;
-            background: white;
             padding: .5rem 1rem;
             gap: 1rem;
             width: 700px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.103);
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+
+            .shorted--link--card {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                background: white;
+                border-radius: 10px;
+                width: 700px;
+                box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.233);
+                justify-content: space-between;
+                align-items: center;
+
+            }
 
 
             .input--link {

@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Hero from './Components/Hero';
@@ -8,11 +8,12 @@ import Start from './Components/Start';
 import Footer from './Components/Footer';
 
 function App() {
+  const [shortLinks, setShortLinks] = useState([]);
   return (
     <div className="App">
       <Navbar />
       <Hero />
-      <ShortenLink />
+      <ShortenLink shortLinks={shortLinks} setShortLinks={setShortLinks} />
       <Statistics />
       <Start />
       <Footer />
