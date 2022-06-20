@@ -9,7 +9,7 @@ function ShortLinkCard({ item, setShortLinks, shortLinks, shortLink }) {
        setShortLinks(shortLinks.map((link) => {
         if(link.id === item.id) {
             if(!link.copy) {
-                navigator.clipboard.writeText(link.id);
+                navigator.clipboard.writeText(link.shortedUrl);
                 return {
                     ...link, copy: true , 
                 }
@@ -30,7 +30,7 @@ function ShortLinkCard({ item, setShortLinks, shortLinks, shortLink }) {
         <div className="shorted--link--card">
             <div className="input--link">{item.inputUrl}</div>
             <div className="shorted--link--wrapper">
-                <a id='short--url' className="short--link">{item.id}</a>
+                <a id='short--url' className="short--link">{item.shortedUrl}</a>
                 <button onClick={handleCopy} className={shortLink.copy ? 'copy--link copy' : 'copy--link'}>{shortLink.copy ? 'Copied' : 'Copy'}</button>
             </div>
         </div>

@@ -1,24 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import style from './Sass/style.scss';
 import ShortLinkCard from './ShortLinkCard';
+import axios from "axios";
 
 
 function ShortenLink({ setShortLinks, shortLinks }) {
     const [inputText, setInputText] = useState('')
     const [showError, setShowError] = useState(true);
+    const [shortLink, setShortLink] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setInputText(e.target.value);
     }
 
+    useEffect(() => {
+        if(inputText.length) {
+            handleShortenUrl();
+        }
+    }, [inputText]);
+
+    const handleShortenUrl = async () => {
+        try {
+            setLoading(true);
+            const res = await axios(`https://api.shrtco.de/v2/shorten?url=${inputText}`)
+            setShortLink(res.data.result.full_short_link);
+            // console.log(shortLink);
+        }
+        catch(error) {
+
+        }
+        finally {
+
+        }
+    } 
+
+
     function handleSubmit(e) {
         e.preventDefault();
-        if (inputText != '') {
+        const string = '^https://'
+        const regexp = new RegExp(string);
+        if (inputText != '' && regexp.test(inputText)) {
             setShowError(prevState => prevState = true)
-            setShortLinks([
-                ...shortLinks, { inputUrl: inputText, copied :false, id: nanoid(), shortedUrl: 'best we are the best'},
-            ])
+            handleShortenUrl();
+            if(shortLink.length) {
+                setShortLinks([
+                    ...shortLinks, { inputUrl: inputText, copied :false, id: nanoid(), shortedUrl: shortLink},
+                ])
+            }
             setInputText('');
         }
         else {
@@ -44,7 +74,7 @@ function ShortenLink({ setShortLinks, shortLinks }) {
             <form className="shorten--link--container">
                 <div className="input--wrapper">
                     <input value={inputText} onChange={handleChange} type="text" className={showError ? 'short-input' : 'short-input show'} placeholder='Shorten a link here' />
-                    <span className={showError ? 'error' : 'error show'}>Please add a link</span>
+                    <span className={showError ? 'error' : 'error show'}>Please add a valid link</span>
                 </div>
                 <button onClick={handleSubmit} type="submit" className="shorten--btn">Shorten It!</button>
             </form>
