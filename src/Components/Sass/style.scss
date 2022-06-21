@@ -784,19 +784,20 @@ footer {
                 gap: 2rem;
                 background: white;
                 border-radius: 10px;
-                width: 700px;
+                width: max(800px, 50vw);
                 box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.233);
                 justify-content: space-between;
                 align-items: center;
+                padding: 1.5rem 1rem;
 
             }
 
 
             .input--link {
                 color: black;
-                font-size: .8rem;
-                padding: 0 1rem;
-                width: min(400px, 30vw);
+                font-size: .9rem;
+                padding: .5rem 1rem;
+                width: max(350px, 27vw);
             }
 
             .shorted--link--wrapper {

@@ -10,14 +10,14 @@ import Footer from './Components/Footer';
 function App() {
   const [shortLinks, setShortLinks] = useState([]);
   return (
-    <div className="App">
+    <main className="App">
       <Navbar />
       <Hero />
       <ShortenLink shortLinks={shortLinks} setShortLinks={setShortLinks} />
       <Statistics />
       <Start />
       <Footer />
-    </div>
+    </main>
   );
 }
 
