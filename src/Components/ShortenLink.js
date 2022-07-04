@@ -41,12 +41,14 @@ function ShortenLink({ setShortLinks, shortLinks }) {
         e.preventDefault();
         const string = '^https://'
         const regexp = new RegExp(string);
+        const splitText = inputText.slice(0, 35);
+        console.log(splitText);
         if (inputText != '' && regexp.test(inputText)) {
             setShowError(prevState => prevState = true)
             handleShortenUrl();
             if(shortLink.length) {
                 setShortLinks([
-                    ...shortLinks, { inputUrl: inputText, copied :false, id: nanoid(), shortedUrl: shortLink},
+                    ...shortLinks, { inputUrl: splitText, copied :false, id: nanoid(), shortedUrl: shortLink},
                 ])
             }
             setInputText('');

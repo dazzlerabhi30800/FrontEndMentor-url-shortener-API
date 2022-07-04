@@ -28,7 +28,7 @@ function ShortLinkCard({ item, setShortLinks, shortLinks, shortLink }) {
 
     return (
         <div className="shorted--link--card">
-            <div className="input--link">{item.inputUrl}</div>
+            <div className="input--link">{item.inputUrl}...</div>
             <div className="shorted--link--wrapper">
                 <a id='short--url' className="short--link">{item.shortedUrl}</a>
                 <button onClick={handleCopy} className={shortLink.copy ? 'copy--link copy' : 'copy--link'}>{shortLink.copy ? 'Copied' : 'Copy'}</button>
